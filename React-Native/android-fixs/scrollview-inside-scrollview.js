@@ -20,12 +20,14 @@ const windowHeight = Dimensions.get('window').height
 
 export default class Demo extends Component {
 
+  // disable scroll for outer scrollview
   lockWrapScroll () {
     this._wrap.setNativeProps({
       scrollEnabled: false
     })
   }
 
+  // enable scroll for outer scrollview
   unlockWrapScroll () {
     this._wrap.setNativeProps({
       scrollEnabled: true
