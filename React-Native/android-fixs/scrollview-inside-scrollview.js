@@ -34,77 +34,41 @@ export default class Demo extends Component {
 
   componentWillMount () {
     this.wrapPan = PanResponder.create({
-      // ask to be responder
       onStartShouldSetPanResponder: (evt, gestureState) => (console.log('wrap start responder')),
       onStartShouldSetPanResponderCapture: (evt, gestureState) => (console.log('wrap start responder capture')),
       onMoveShouldSetPanResponder: (evt, gestureState) => (console.log('wrap move responder')),
       onMoveShouldSetPanResponderCapture: (evt, gestureState) => (console.log('wrap move responder capture')),
-
-      onPanResponderGrant: (evt, gestureState) => {
-        // 开始手势操作。给用户一些视觉反馈，让他们知道发生了什么事情！
-
-        // gestureState.{x,y}0 现在会被设置为0
-      },
-      onPanResponderMove: (evt, gestureState) => {
-        // 最近一次的移动距离为gestureState.move{X,Y}
-
-        // 从成为响应者开始时的累计手势移动距离为gestureState.d{x,y}
-      },
+      onPanResponderGrant: (evt, gestureState) => { },
+      onPanResponderMove: (evt, gestureState) => { },
       onPanResponderTerminationRequest: (evt, gestureState) => true,
-      onPanResponderRelease: (evt, gestureState) => {
-        // 用户放开了所有的触摸点，且此时视图已经成为了响应者。
-        // 一般来说这意味着一个手势操作已经成功完成。
-      },
-      onPanResponderTerminate: (evt, gestureState) => {
-        // 另一个组件已经成为了新的响应者，所以当前手势将被取消。
-      },
+      onPanResponderRelease: (evt, gestureState) => { },
+      onPanResponderTerminate: (evt, gestureState) => { },
       onShouldBlockNativeResponder: (evt, gestureState) => {
-        // console.log('block native responder', this.touchLocation.y)
-        // 返回一个布尔值，决定当前组件是否应该阻止原生组件成为JS响应者
-        // 默认返回true。目前暂时只支持android。
-        console.log('wrap block')
-        // this.props.lockedTabSlid()
+        // only android
         return false
       }
     })
     this.itemPan = PanResponder.create({
-      // 要求成为响应者：
       onStartShouldSetPanResponder: (evt, gestureState) => (console.log('item start responder'), true),
       onStartShouldSetPanResponderCapture: (evt, gestureState) => (console.log('item start responder capture')),
       onMoveShouldSetPanResponder: (evt, gestureState) => (console.log('item move responder')),
       onMoveShouldSetPanResponderCapture: (evt, gestureState) => (console.log('item move responder capture')),
-
       onPanResponderGrant: (evt, gestureState) => {
         console.log('let start items move')
         this.lockWrapScroll()
-        // 开始手势操作。给用户一些视觉反馈，让他们知道发生了什么事情！
-
-        // gestureState.{x,y}0 现在会被设置为0
       },
-      onPanResponderMove: (evt, gestureState) => {
-        // 最近一次的移动距离为gestureState.move{X,Y}
-
-        // 从成为响应者开始时的累计手势移动距离为gestureState.d{x,y}
-      },
+      onPanResponderMove: (evt, gestureState) => { },
       onPanResponderTerminationRequest: (evt, gestureState) => true,
       onPanResponderRelease: (evt, gestureState) => {
         console.log('items move out')
         this.unlockWrapScroll()
-        // 用户放开了所有的触摸点，且此时视图已经成为了响应者。
-        // 一般来说这意味着一个手势操作已经成功完成。
       },
       onPanResponderTerminate: (evt, gestureState) => {
         console.log('others responder')
         this.unlockWrapScroll()
-        // 另一个组件已经成为了新的响应者，所以当前手势将被取消。
-        // 建议在这里做与onPanResponderRelease同样的处理，除非你明确知道这个事件会在哪里终结。
       },
       onShouldBlockNativeResponder: (evt, gestureState) => {
-        // console.log('block native responder', this.touchLocation.y)
-        // 返回一个布尔值，决定当前组件是否应该阻止原生组件成为JS响应者
-        // 默认返回true。目前暂时只支持android。
-        console.log('item block')
-        // this.props.lockedTabSlid()
+        // only android
         return false
       }
     })
