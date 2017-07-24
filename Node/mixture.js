@@ -25,9 +25,9 @@ function mixture (...funcs) {
 function toPromise (func) {
   return (...arg) => {
     return new Promise((resolve, reject) => {
-      func.apply(this, [].concat(arg, (err, data) => {
+      func.apply(this, [].concat(arg, (err, ...data) => {
         if (err) reject(err)
-        else resolve(data)
+        else resolve(...data)
       }))
     })
   }
