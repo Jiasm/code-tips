@@ -3,9 +3,9 @@
  * 支持如下三种使用方式：
  * const fs = require('fs');
  *
- * const writeFile = mixture(fs.writeFile) // 1
- * const [mkdir, unlink] = mixture([fs.mkdir, fs.unlink]) // 2
- * const [readFile, stat] = mixture(fs.readFile, fs.stat) // 3
+ * 1. const writeFile = mixture(fs.writeFile)
+ * 2. const [mkdir, unlink] = mixture([fs.mkdir, fs.unlink])
+ * 3. const [readFile, stat] = mixture(fs.readFile, fs.stat)
  */
 
 module.exports = mixture;
