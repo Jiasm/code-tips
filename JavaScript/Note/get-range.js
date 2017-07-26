@@ -1,12 +1,12 @@
-function app () {
+function app ({blockLength, float}) {
   let count = 0
 
   let getAngle = ((len) => {
     let data = {}
     let rules = new Array(len).fill('').map((_, index) => {
       let val = checkVal((index + 1) * 45)
-      let min = checkVal(val - 3)
-      let max = checkVal(val + 3)
+      let min = checkVal(val - float)
+      let max = checkVal(val + float)
 
       return {
         val,
@@ -49,7 +49,7 @@ function app () {
 
       return angle
     }
-  })(8)
+  })(blockLength)
 
   // test
   let text = ''
@@ -68,5 +68,8 @@ function app () {
 }
 
 console.time('app')
-app()
+app({
+  blockLength: 8,
+  float: 3
+})
 console.timeEnd('app')
