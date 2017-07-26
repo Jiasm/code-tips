@@ -4,7 +4,7 @@ function app ({blockLength, float}) {
   let getAngle = ((len) => {
     let data = {}
     let rules = new Array(len).fill('').map((_, index) => {
-      let val = checkVal((index + 1) * 45)
+      let val = checkVal((index + 1) * 360 / len)
       let min = checkVal(val - float)
       let max = checkVal(val + float)
 
