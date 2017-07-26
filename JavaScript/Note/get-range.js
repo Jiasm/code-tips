@@ -54,7 +54,7 @@ function app ({blockLength, float}) {
   // test
   let text = ''
   for (let i = 0; i < 3; i++) {
-    for (let j = 0; j < 360; j++) {
+    for (let j = 1; j <= 360; j++) {
       text += `
         <div>
           <span class="angle">${j}=></span>
